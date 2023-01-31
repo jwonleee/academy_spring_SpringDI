@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- list or map의 의존성 주입 -->
+	<bean id="customer" class="ex03.Customer">
+	
+		<!-- list안의 person -->
+		<property name="lists"> <!-- setter로 들어오니까 property, 이름은 lists -->
+			<list> <!-- list객체에 대한 표현임을 앎 -->
+				<value>홍길동</value>
+				<value>이순신</value>
+				<value>스프링</value>
+			</list>
+		</property>
+		
+		<!-- list안의 object -->
+		<property name="persons">
+			<list>
+				<bean class="ex03.Person">
+					<property name="name" value="홍길동"></property>
+					<property name="id" value="aaa123"></property>
+				</bean>
+				<bean class="ex03.Person">
+					<property name="name" value="이순신"></property>
+					<property name="id" value="bbb123"></property>
+				</bean>
+			</list>
+		</property>
+		
+		<!-- map안의 object -->
+		<property name="maps">
+			<map>
+				<entry key="k1" value="문자열"/> <!-- map의 첫번째 키로는 이거 -->
+				<entry key="k2"> <!-- 두번째 키로는 이거 -->
+					<bean class="ex03.Person">
+						<property name="name" value="홍길자"></property>
+						<property name="id" value="bbb123"></property>
+					</bean>
+				</entry>
+			</map>
+		</property>
+		
+	</bean>
+	
+	
+
+</beans>
